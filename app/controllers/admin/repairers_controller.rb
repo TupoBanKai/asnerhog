@@ -1,4 +1,5 @@
 class Admin::RepairersController < ApplicationController
+	before_action :find_repairer, only: [:edit, :update, :destroy, :show]
  
  def index
  	@repairers = Repairer.all 
@@ -6,32 +7,34 @@ class Admin::RepairersController < ApplicationController
 
  def create
 	Repairer.create(params[:repairers])
-	#переход на другое действие контроллера
+	#переход на другое действие контроллера и роутхелпер
 	redirect_to admin_repairers_path
  end
 
  def new
- 	@rep = Repairer.new
+ 	@repairer = Repairer.new
  end
 
  def edit
- 	@rep = Repairer.find(params[:id])
  end
 
  def show
- 	@rep = Repairer.find(params[:id])
  end
 
- def update
- 	ye = Repairer.find(params[:id]
- 	ye.update(params[:repairers])
+ def update 
+ 	@repairer.update(params[:repairers])
  	redirect_to admin_repairers_path
  end
 
  def destroy
- 	ye = Repairer.find(params[:id]
- 	ye.delete
+ 	@repairer.delete
  	redirect_to admin_repairers_path
+ end
+
+ private
+
+ def find_repairer
+ 	@repairer = Repairer.find(params[:id])
  end
 
 end
