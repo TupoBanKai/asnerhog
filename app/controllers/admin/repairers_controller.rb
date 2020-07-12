@@ -6,7 +6,7 @@ class Admin::RepairersController < ApplicationController
  end
 
  def create
-	Repairer.create(params[:repairers])
+	Repairer.create(permitted_params)
 	#переход на другое действие контроллера и роутхелпер
 	redirect_to admin_repairers_path
  end
@@ -22,7 +22,7 @@ class Admin::RepairersController < ApplicationController
  end
 
  def update 
- 	@repairer.update(params[:repairers])
+ 	@repairer.update(permitted_params)
  	redirect_to admin_repairers_path
  end
 
@@ -35,6 +35,10 @@ class Admin::RepairersController < ApplicationController
 
  def find_repairer
  	@repairer = Repairer.find(params[:id])
+ end
+
+ def permitted_params
+	params.require(:repairer).permit(:first_name, :middle_name, :last_name, :discription, :profession)
  end
 
 end

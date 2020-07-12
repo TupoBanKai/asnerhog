@@ -1,1 +1,9 @@
 <h1>Edit Repairers</h1>
+<%= form_for [:admin, @repairer] do |f| %>
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :middle_name %>
+  <%= f.text_field :discription %>
+  <%= f.text_field :profession %>
+  <%= submit_tag 'Update' %>
+<% end %>
