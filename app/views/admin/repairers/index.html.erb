@@ -1,7 +1,0 @@
-<% @repairers.each do |y| %>
-	<%= "#{y.last_name} #{y.first_name} #{y.middle_name}" %>
-	<%= link_to "Редактировать сотрудника", edit_admin_repairer_path(y) %>
-	<%= link_to "Удалить сотрудника", admin_repairer_path(y), confirm: 'Are you sure?', method: :delete %>
-	<br />
-<% end %>
-<%= link_to "Добавить нового сотрудника", new_admin_repairer_path %>
